@@ -107,7 +107,7 @@ wget -O output.html https://example.com
 
 9. Creating a MySQL database server in a virtual machine (VM) and accessing it from your local machine involves several steps.
 
-Install MySQL Server:
+- Install MySQL Server:
 
 SSH into your VM :
 - First, access your VM via SSH. Use the following command, replacing your-username and your-vm-ip with your actual username and VM's IP address:
@@ -124,27 +124,26 @@ Configure MySQL:
 sudo mysql_secure_installation
 
 ```
-Allow External Access:
-By default, MySQL may only listen for connections from the localhost. To allow external access, you need to modify the MySQL configuration. Edit the MySQL configuration file:
+- Allow External Access: By default, MySQL may only listen for connections from the localhost. To allow external access, you need to modify the MySQL configuration. Edit the MySQL configuration file:
 ```
 sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
 
 ```
-Look for the bind-address directive and change it to the VM's IP address or 0.0.0.0 to allow connections from any IP (not recommended for production):
+- Look for the bind-address directive and change it to the VM's IP address or 0.0.0.0 to allow connections from any IP (not recommended for production):
 ```
 bind-address = 0.0.0.0
 
 ```
 Save the file and exit the text editor.
 
-Create a Database and User:
+- Create a Database and User:
 
-Access the MySQL shell:
+- Access the MySQL shell:
 ```
 mysql -u root -p
 
 ```
-Create a database and user with appropriate privileges:
+- Create a database and user with appropriate privileges:
 ```
 CREATE DATABASE your_database_name;
 CREATE USER 'your_username'@'%' IDENTIFIED BY 'your_password';
@@ -154,18 +153,14 @@ FLUSH PRIVILEGES;
 ```
 Replace your_database_name, your_username, and your_password with your preferred values.
 
-Allow MySQL Port Through Firewall:
-
-If a firewall is enabled on your VM, allow incoming connections to MySQL port (default is 3306):
+- Allow MySQL Port Through Firewall: If a firewall is enabled on your VM, allow incoming connections to MySQL port (default is 3306):
 
 For Ubuntu with UFW:
 ```
 sudo ufw allow 3306/tcp
 
 ```
-Access MySQL Server from Your Local Machine:
-
-On your local machine, use a MySQL client (e.g., MySQL Workbench, phpMyAdmin, or the command-line mysql tool) to connect to the MySQL server using the VM's public IP address. Use the username and password you created in step 4.
+- Access MySQL Server from Your Local Machine: On  local machine, use a MySQL client (e.g., MySQL Workbench, phpMyAdmin, or the command-line mysql tool) to connect to the MySQL server using the VM's public IP address. Use the username and password you created in step 4.
 
 Example using the command-line MySQL client:
 ```

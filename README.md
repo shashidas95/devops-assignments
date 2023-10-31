@@ -1,3 +1,6 @@
 # assignments-
-         #### how to find a ip of a domain.
-          - command:ping shashikanta.com
+
+how to find a ip of a domain 
+```
+ping shashikanta.com
+```

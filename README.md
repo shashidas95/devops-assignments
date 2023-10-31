@@ -109,17 +109,16 @@ wget -O output.html https://example.com
 
 - Install MySQL Server:
 
-SSH into your VM :
-- First, access your VM via SSH. Use the following command, replacing your-username and your-vm-ip with your actual username and VM's IP address:
+- SSH into your VM : First, access your VM via SSH. Use the following command, replacing your-username and your-vm-ip with your actual username and VM's IP address:
 ```
 ssh your-username@your-vm-ip
 ```
-install the MySQL server:
+- install the MySQL server:
  ```
 sudo apt update
 sudo apt install mysql-server
  ```
-Configure MySQL:
+- Configure MySQL:
 ```
 sudo mysql_secure_installation
 

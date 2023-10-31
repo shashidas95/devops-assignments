@@ -1,5 +1,12 @@
 # assignments-
 
+- start connection VM with mobaxterm
+- from vm start
+- ubuntu-server login ubuntu-server
+- password ***
+- open mobaxterm -> session -> remote host ip address -> check the box->ubuntu-server->ok
+  
+
 1. how to find a ip of a domain 
 ```
 ping shashikanta.com

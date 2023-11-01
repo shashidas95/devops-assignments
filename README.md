@@ -5,7 +5,26 @@
 - ubuntu-server login ubuntu-server
 - password ***
 - open mobaxterm -> session -> remote host ip address -> check the box->ubuntu-server->ok
-  
+
+  - how to find ip of a domain?
+- how to find router ip assigned by the ISP?
+- how to find private ip of host machine?
+- how to change private ip of a ubuntu machine?
+- check ports open in the current system?
+- enable port 80 and 3306 in vm
+- download any file or software using terminal
+- get web data response from terminal
+- install nginx webserver in the vm and access the welcome nginx         page from web browser
+- create a mysql database server in vm and access it from host machine
+- replace default nginx page with an index.html page containing your name and access it from web browser
+- display the same index.html file in "your_name.com" by utilizing hostname of vm and host machine
+
+
+Submission Guideline: Submit commands for the first four questions(for safekeeping purposes we don't recommend you to reavel your IP) and for the rest submit commands and corresponding screenshots. Create .sh files for each task. Create a documentation.pdf explaining each task with related screenshots.
+If you are unable turn in your task, please submit it in the comment section. 
+
+Submission Deadline: 16th October, 2023, Monday 11:59 PM
+
 
 1. how to find a ip of a domain 
 ```

@@ -175,3 +175,43 @@ mysql -h vm_ip_address -u your_username -p
 ```
 You'll be prompted for the password you set in step 4.
 Now, you should be able to access the MySQL database server in your VM from your local machine or host using the VM's public IP address. Make sure to consider security best practices and, if needed, configure firewall rules, security groups, or network settings to allow the traffic between your local machine and the VM.
+
+
+20. how to Reset the MySQL Root Password:
+```
+sudo systemctl stop mysql
+
+
+```
+run MySQL in safe mode with the --skip-grant-tables option. This allows you to access MySQL without authentication:
+```
+sudo mysqld_safe --skip-grant-tables --skip-networking &
+```
+
+if "Directory '/var/run/mysqld' for UNIX socket file doesn't exist": This message indicates that the directory '/var/run/mysqld,' where MySQL's UNIX socket file is expected to be located, does not exist. You can create this directory if it doesn't already exist:
+```
+sudo mkdir /var/run/mysqld
+
+```
+After creating the directory, you can start the MySQL server in safe mode again:
+```
+sudo mysqld_safe --skip-grant-tables --skip-networking &
+
+
+```
+Then, access MySQL without a password:
+```
+mysql -u root
+
+```
+Now, you can change the root password. Replace new_password with your desired password:
+```
+FLUSH PRIVILEGES;
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'new_password';
+
+```
+After setting the password, exit MySQL and restart the MySQL service:
+```
+exit
+sudo service mysql start 
+```

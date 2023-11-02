@@ -234,3 +234,53 @@ After setting the password, exit MySQL and restart the MySQL service:
 exit
 sudo service mysql start 
 ```
+
+
+## python-app-deployment
+This repo contains Python applications to practice DevOps practice with these
+
+Assignment Instruction
+Fork the repo
+Run Both Applications in localhost
+Provide all the changes needed in configuration files to properly deploy it in localhost in the documentation
+Deploy both applications in a VM, where the host will be the VM's IP
+Access the application from the web browser
+Provide all changes needed in configuration files to properly deploy it in a remote VM
+Automate the whole process with shell script so that the project can be seamlessly deployed in local and remote server environment
+Submit the link of the forked git repo which will contain all config and scripts along with the project code and documentation
+Documentation could be a readme.md file or any pdf file
+Note:
+Project with db connection needs a db server with proper configuration to work properly. Prepare a db server and upload the dump file, which contains the data schema for the respective project.
+
+Project Structure
+Each Python application should be run inside a virtual environment
+All dependencies should be listed in a file, commonly named requirements.txt
+Before executing the program, the virtual environment should be created and activated
+Before executing the program, all dependencies should be resolved by installing all packages listed in requirements.txt
+Basic commands
+
+- for deployment in the localhost first app
+```
+python --version
+git clone https://github.com/obijzbo/python-app-deployment.git
+cd python-app-deployment
+python -m venv venv
+venv\Scripts\activate
+python.exe -m pip install --upgrade pip
+cd python-fast-app
+pip install -r requirements.txt
+pip install flask
+set FLASK_APP=main.py
+set FLASK_ENV=development
+pip install fastapi
+pip install mysql-connector-python
+pip install uvicorn
+pip install python-multipart
+uvicorn main:app --host 0.0.0.0 --port 8000
+
+py main.py
+```
+- for active connections
+```
+netstat
+```

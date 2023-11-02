@@ -1,23 +1,23 @@
-# assignments-
-
+# how to connect with mobaxterm with vm
 - start connection VM with mobaxterm
 - from vm start
 - ubuntu-server login ubuntu-server
 - password ***
 - open mobaxterm -> session -> remote host ip address -> check the box->ubuntu-server->ok
+# assignments-on networking
 
-  - how to find ip of a domain?
-- how to find router ip assigned by the ISP?
-- how to find private ip of host machine?
-- how to change private ip of a ubuntu machine?
-- check ports open in the current system?
-- enable port 80 and 3306 in vm
-- download any file or software using terminal
-- get web data response from terminal
-- install nginx webserver in the vm and access the welcome nginx         page from web browser
-- create a mysql database server in vm and access it from host machine
-- replace default nginx page with an index.html page containing your name and access it from web browser
-- display the same index.html file in "your_name.com" by utilizing hostname of vm and host machine
+- 1. how to find ip of a domain?
+- 2. how to find router ip assigned by the ISP?
+- 3. how to find private ip of host machine?
+- 4. how to change private ip of a ubuntu machine?
+- 5. check ports open in the current system?
+- 6. enable port 80 and 3306 in vm
+- 7. download any file or software using terminal
+- 8. get web data response from terminal
+- 9. install nginx webserver in the vm and access the welcome nginx  page from web browser
+- 10. create a mysql database server in vm and access it from host machine
+- 11. replace default nginx welcome page with an index.html page containing your name and access it from web browser
+- 12. display the same index.html file in "your_name.com" by utilizing hostname of vm and host machine
 
 
 Submission Guideline: Submit commands for the first four questions(for safekeeping purposes we don't recommend you to reavel your IP) and for the rest submit commands and corresponding screenshots. Create .sh files for each task. Create a documentation.pdf explaining each task with related screenshots.
@@ -25,7 +25,7 @@ If you are unable turn in your task, please submit it in the comment section.
 
 Submission Deadline: 16th October, 2023, Monday 11:59 PM
 
-
+# commands for assignment on networking
 1. how to find a ip of a domain 
 ```
 ping shashikanta.com
@@ -39,18 +39,56 @@ or
 ip route | grep default
 
 ```
-2. how to find the private ip of a host machine
+3. how to find the private ip of a host machine
 ```
 ip a
 ```
-2. how to find the private ip of a host machine
+- 4. how to change private ip of a ubuntu machine?
+Identify the Network Interface:
+```
+ifconfig
+# or
+ip addr
+```
+Backup Network Configuration:
+```
+sudo cp /etc/netplan/01-netcfg.yaml /etc/netplan/01-netcfg.yaml.bak
+```
+Edit Network Configuration:
+```
+sudo nano /etc/netplan/01-netcfg.yaml
+```
+Change the IP Address:
+```
+addresses:
+  - 192.168.0.104/24
+```
+Apply the Changes:
+```
+sudo netplan apply
+```
+Verify the New IP Address:
+```
+ifconfig
+# or
+ip addr
+```
+5. check ports open in the current system?
 ```
 netstat -tuln
 explaination of commands
 
 netstat -tuln, the command will provide you with a list of open TCP and UDP ports on your system, specifically showing the listening ports, and it will display them as numeric IP addresses and port numbers, making it easier to identify and work with the network connections and services on your computer.
+or
+ss -tuln
+or
+sudo apt install nmap
+sudo nmap -p- localhost
+
+
+Please note that the nmap command may require superuser privileges to scan all ports.
 ```
-5. to open port 3306 (MySQL) and port 80 (HTTP) on a VM running Ubuntu with ufw:
+6. enable port 3306 (MySQL) and port 80 (HTTP) on a VM running Ubuntu with ufw:
 ```
 sudo ufw allow 3306/tcp
 sudo ufw allow 80/tcp
@@ -66,7 +104,7 @@ sudo ufw status
 ```
 
  
-7. To install the Nginx web server on a virtual machine (VM) and access the welcome page, you can follow these general steps.
+9. To install the Nginx web server on a virtual machine (VM) and access the welcome page, you can follow these general steps.
 
 - First, access your VM via SSH. Use the following command, replacing your-username and your-vm-ip with your actual username and VM's IP address:
 ```
@@ -104,7 +142,7 @@ ip a
 If you want to serve your own web content or customize Nginx further, you can edit the configuration files located in the /etc/nginx directory. 
 The default web root directory is usually /var/www/html.
 
-6. To download a file or install a package from the terminal in a Linux-based operating system Using APT (Advanced Package Tool) 
+7. To download a file or install a package from the terminal in a Linux-based operating system Using APT (Advanced Package Tool) 
 ```
 sudo apt update
 sudo apt install package-name
@@ -114,8 +152,9 @@ To download a file:
 wget https://example.com/file-url
 example
 wget www.shashikanta.com
+
 ```
-8. You can retrieve web data from the terminal in Linux using several command-line tools.
+You can retrieve web data from the terminal in Linux using several command-line tools.
 Two common tools for this purpose are curl and wget. Here's how to use them to fetch web data:
 
 ```
@@ -137,7 +176,7 @@ wget -O output.html https://example.com
 
 - SSH into your VM : First, access your VM via SSH. Use the following command, replacing your-username and your-vm-ip with your actual username and VM's IP address:
 ```
-ssh your-username@your-vm-ip
+ssh your-username@your-vm-ip  **note optional**
 ```
 - install the MySQL server:
  ```
@@ -165,10 +204,17 @@ Save the file and exit the text editor.
 
 - Access the MySQL shell:
 ```
-mysql -u root -p
+sudo mysql 
 
 ```
-- Create a database and user with appropriate privileges:
+- Create a database and user with appropriate privileges: for accessing from localhost
+```
+CREATE DATABASE your_database_name;
+CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';
+GRANT ALL PRIVILEGES ON your_database_name.* TO 'your_username'@'localhost' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+```
+- Create a database and user with appropriate privileges: for accessing from vm
 ```
 CREATE DATABASE your_database_name;
 CREATE USER 'your_username'@'%' IDENTIFIED BY 'your_password';
@@ -234,6 +280,94 @@ After setting the password, exit MySQL and restart the MySQL service:
 exit
 sudo service mysql start 
 ```
+- 11. replace default nginx welcome page with an index.html page containing your name and access it from web browser
+Create a Custom index.html File:
+```
+nano /var/www/html/index.html
+```
+```
+
+Replace /var/www/html with the appropriate web server root directory path if it's different on your system.
+```
+Add your content to the index.html file. For example:
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Personal Page</title>
+</head>
+<body>
+    <h1>Hello, I am [Your Name]</h1>
+</body>
+</html>
+
+```
+Save the file and exit the text editor.
+
+Restart Nginx:
+
+After creating the custom index.html file, you need to restart the Nginx web server to apply the changes:
+```
+sudo systemctl restart nginx
+Access the Custom Page from a Web Browser:
+```
+Open your web browser and enter the IP address or domain name of your server. You should see your custom page with your name displayed.
+
+For example, if your server's IP address is 192.168.0.103, you can access it by entering the following URL in your web browser's address bar:
+```
+http://192.168.0.103
+```
+You should see the custom index.html page you created with your name displayed on the web page.
+
+- 12. display the same index.html file in "your_name.com" by utilizing hostname of vm and host machine
+ 
+To display the same `index.html` file in "your_name.com" by utilizing the hostname of your VM and host machine, you'll need to make changes to the hosts file on your host machine. Here are the steps to achieve this:
+
+Edit the Hosts File on Your Host Machine:
+On your host machine, you need to edit the hosts file to map "your_name.com" to the IP address of your VM. This allows your host machine to resolve "your_name.com" to the correct IP address. You'll typically need administrative privileges to edit the hosts file.
+
+   - On Windows:
+     Open Notepad or your preferred text editor as an administrator. To do this, right-click on the text editor and select "Run as administrator." Then open the hosts file, which is usually located at `C:\Windows\System32\drivers\etc\hosts`. Add the following entry to the hosts file:
+
+     ```
+     VM_IP_ADDRESS your_name.com
+     ```
+
+     Replace `VM_IP_ADDRESS` with the actual IP address of your VM.
+
+   - On Linux or macOS:
+     Open a terminal and edit the hosts file using a text editor with superuser privileges, such as `sudo nano` or `sudo vim`. For example:
+
+     ```
+     sudo nano /etc/hosts
+     ```
+
+     Add the following entry to the hosts file:
+
+     ```
+     VM_IP_ADDRESS your_name.com
+     ```
+
+     Replace `VM_IP_ADDRESS` with the actual IP address of your VM.
+
+2. **Save the Hosts File**:
+
+   Save the hosts file after adding the entry. In most text editors, you can press `Ctrl` + `S` (or `Cmd` + `S` on macOS) to save the changes.
+
+3. **Access "your_name.com"**:
+
+   After saving the hosts file, you should be able to access "your_name.com" from your host machine's web browser, and it will display the `index.html` page from your VM.
+
+   Open your web browser and enter the following URL in the address bar:
+
+   ```
+   http://your_name.com
+   ```
+
+   Your web browser should resolve "your_name.com" to the IP address of your VM and display the custom `index.html` page you created with your name.
+
+By editing the hosts file on your host machine, you can map a custom hostname to your VM's IP address, allowing you to access the custom web page using the desired domain name.
+
 
 
 ## python-app-deployment

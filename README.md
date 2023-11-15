@@ -418,3 +418,46 @@ py main.py
 ```
 netstat
 ```
+# Docker Assignment - 1
+-Write a Dockerfile for any project
+- Make it multistage compatible
+- Make it multiplatform compatible with buildx
+- Push the image to the docker hub
+- Write commands to
+- Run containers from image
+- Open a shell inside the container
+- Submit the git repository with the project, Dockerfile, bash script if any, and documentation
+
+# Docker commands for installation
+### Update package lists
+```
+sudo apt-get update
+```
+### Remove existing Docker packages
+```
+sudo apt-get remove docker docker-engine docker.io containerd runc -y
+```
+### Install required packages for Docker installation
+```
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
+```
+### Add Docker's official GPG key
+```
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+```
+### Add Docker repository
+```
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+```
+### Update package information with the new Docker repository
+```
+sudo apt-get update
+```
+### Install Docker CE (Community Edition)
+```
+sudo apt-get install docker-ce -y
+```
+### Check the status of Docker service
+```
+sudo systemctl status docker
+```
